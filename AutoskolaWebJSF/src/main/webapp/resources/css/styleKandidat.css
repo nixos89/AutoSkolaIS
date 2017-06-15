@@ -1,0 +1,409 @@
+@CHARSET "UTF-8";
+
+
+body{
+	background-color:#ccebfd;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.divZaPozadinu{
+ 	min-height: 85px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 400px 150px;;
+}
+
+.slika{
+	margin-left:20%;
+	margin-top:-3%;
+}
+
+.logOut{
+	float:right;
+	margin-top:-50px;
+}
+
+h1{
+	color:blue;
+	margin-top:-10px;
+	margin-left:400px;
+	text-shadow: 2px 2px white;
+}
+
+h1.h1Kandidat{
+	color:blue;
+	margin-top:-10px;
+	margin-left:38%;
+	text-shadow: 2px 2px white;
+}
+
+h1.naslovUnosKandidata{
+	color:blue;
+	margin-top:-10px;
+	margin-left:37%;
+	text-shadow: 2px 2px white;
+}
+
+h2{
+	color:blue;
+	font-size:20px;
+	margin-top:-10px;
+	margin-right: 18%;
+	text-align:center;
+	text-shadow: 2px 2px white;
+}
+
+.okvir{
+	float:left;
+	margin-top:-100px;
+}
+
+.ui-button.ui-state-default.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#a6ffa6;
+}
+
+.ui-button.ui-state-hover.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#3cff3c;
+}
+
+.ui-button.ui-state-default.dugmeUnosKandidata{
+	color:black;
+	text-shadow: 1px 1px 1px 1px black;
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+}
+
+.ui-button.ui-state-hover.dugmeUnosKandidata{
+	color:black;
+	text-shadow: 1px 1px 1px 1px black;
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+}
+
+.ui-button.ui-state-default.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-button.ui-state-hover.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-button.ui-state-default.dugmeObrisiKandidata{
+	box-shadow: 1px 1px 1px black;
+	background:#ff9f9f;
+	margin-left:5px;
+	color:black;
+}
+
+
+.ui-button.ui-state-hover.dugmeObrisiKandidata{
+	box-shadow: 1px 1px 1px black;
+	background:#ff0000;
+	margin-left:5px;
+	color:black;
+}
+
+
+.ui-button-text-only.ui-button-text.dugme{
+	padding: .3em 1em;
+	color:black;
+}
+
+#glavniMeni{
+	float:left;
+	margin-top:-13%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+.hide { 
+    display: none;
+}
+
+a:link, a:visited {
+    color: blue;
+    text-align: center;
+    text-decoration: underlined;
+    position:relative;
+/*     text-shadow:1px 1px black; */
+/*     display: inline-block; */
+/*     background-color: #f44336; */
+/*     padding: 14px 25px; */
+}
+
+a:hover, a:active {
+    background-color: red;
+    color:white;
+}
+
+.sadrzaj {
+	margin:3% 3% 5% auto;
+	width:70%;
+}
+
+#okvirMeni{
+	float:left;
+	align-text:center;
+	border-style: inline;
+}
+
+.ui-datatable-data.ui-widget-content{
+	text-align:center;
+}
+
+.ui-panelgrid.ui-widget.unosKandidataPGClass{
+	margin-bottom:5%;
+	width:550px;
+	margin-left:24%;
+}
+
+
+.ui-panelgrid.ui-widget.pronadjiKandidataPanelGrid{
+	margin-bottom:5%;
+	width:auto;	
+}
+
+.ui-panelgrid.ui-widget.podPanelGridClassKandidat{
+	width:450px;
+	margin-left: 35%;
+}
+
+
+.ui-panelgrid.ui-widget.unosPrijavePanelGridClass{
+	margin-left:380px;
+}
+
+.ui-datatable.ui-widget.dataTablePrijaveKandidataClass{
+	margin-bottom:5%;
+	margin-top:-70px;
+	margin-left:380px;
+	width:38%;
+}
+
+.leviPanelIzvestajiKandidataClass .ui-panel-titlebar{
+	height:20px;
+	text-align:center;
+}
+
+.ui-panelgrid.ui-widget.panelGridKandZaKatClass{
+	width:350px;
+}
+
+.ui-panelgrid.ui-widget.panelGridKandidatiInstruktoraClass{
+	width:200px;
+}
+
+.ui-selectonemenu.select1MenuInstMenu{
+	width:200px;
+}
+
+.ui-selectonemenu-label.select1MenuInstMenu{
+	width:200px;
+}
+
+.prijavaIspitaPanelClass .ui-panel-titlebar{
+	height:20px;
+}
+
+.unosKandidataPanelClass .ui-widget-content .ui-panel{
+	width:200px;
+}
+
+.unosKandidataPanelClass .ui-panel-titlebar{
+	height:30px;
+}
+
+.unosKandidataPanelClass .ui-corner-all .ui-widget-content .ui-widget .ui-panel{
+	width:500px;
+}
+
+/* Radi SAMO kad je u pitanju tag h:panelGrid i  stoji atribut 'class', 
+   a ne 'styleClass' kao za PrimeFaces */
+.panel1{
+	align-content:center;
+	align-text:center;
+	margin: 5px auto;
+	family-font:arial;
+	padding: 2px;
+	font-size:18px;
+	width: 500x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+	color: white;
+	text-shadow:1px 1px black;
+	background: #67b1e9;
+}
+
+
+.ui-panelgrid.panel2{
+	margin-left:480px;
+	padding: 2px;
+	font-size:18px;
+	width: 500x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+.boja1Kolone{
+	color:white;
+	text-shadow:1px 1px black;
+	background-color:#67b1e9;
+	family-font:tahoma;
+}
+
+.boja1Kolone tr{
+	border:3px;
+}
+
+.dugme .ui-commandButton{
+	background-color:lightgreen;
+}
+
+.button{
+	width:100%;
+	background-color:lightgreen;
+	color:white;
+	text-shadow: 0px 0px 4px black;
+
+}
+
+#formaKandidata{
+	align-content:center;
+}
+
+
+#unosKandidataPanelGrid{
+	background-color:green;
+}
+
+.ui-panel-pronadjiKandidataPanel{
+	background-color:green;
+}
+
+.ui-panel .unosKandidataPanelClass{
+	color:green;
+}
+
+#listaPolaganjaSaDataTablePanel{
+	align-content:center;
+}
+
+#listaPronadjenihKandidataPanel{
+	width:100%;
+	background: blue;
+}
+
+/* .panelGridKandidati{ */
+/* 	width:20%; */
+/* } */
+
+.ui-datatable{
+	width:100%;	
+}
+
+.ui-datatable-column-outputLabel{
+	text-align:center;
+}
+
+/* Stilizovanje kandidat.xhtml stranice*/
+
+#panelMeniKandidata{
+	margin:80px;
+	width:40%;
+	align-content:center;
+	border: 3px black;
+}
+
+
+/* div za PANEL Unosa Kandidata! */
+.sadrzajUnosaKandidata{
+	position:center;
+	margin-top:0;
+	width:80%;
+ 	margin-bottom:100px; /* novo dodato */
+}
+
+.ui-panel.ui-widget.izvestajiKandidataClass{
+	width:660px;
+	margin-bottom:5%;
+	margin-left:350px;
+}
+
+.izvestajiKandidataClass .ui-panel-titlebar{
+	text-align:center;
+	height:23px;
+	padding: .5em 1em .3em;
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 632px;
+}
+
+/* stilizovanje "selectOneMenu" dugmeta */
+
+.ui-selectonemenu.kategorija1Menu{
+	width:190px;
+}
+
+.ui-selectonemenu.instruktor1Menu{
+	width:190px;
+}
+
+.ui-selectonemenu-items.kategorija1Menu{
+	text-color:lightblue;
+}
+
+.divOpisIzvestajaPolozenaVoznja{
+	position: absolute;
+    margin-left: 360px;
+    width: 280px;
+    margin-top: 50px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.divOpisIzvestajaPolozeniTestovi{
+	position: absolute;
+    margin-left: 360px;
+    width: 280px;
+    margin-top: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.spanClasss{
+	background:pink;
+	text-color:black;
+}
+/*-------------------------------------------------------*/
+
+.panelIzvestaja .ui-panel{
+	width:350px;
+}
+
+
+.dugmici{
+	margin: 5px auto !important;
+}
+
+.footer{
+   position:fixed;
+   z-index:10; /* 10 se uzima kao najvisi stack order elementa */
+   text-align:center;
+   left:0;
+   font-size:14px;
+   bottom:0;
+   width:100%;
+   background:#e0e0e0;
+   height:14px;
+}

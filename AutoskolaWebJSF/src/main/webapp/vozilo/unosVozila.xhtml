@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/voziloTemplate.xhtml">
+		<ui:define name="head">
+			<title>Kreiranje vozila</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Unos podataka vozila</h1>
+			<h:form>
+				<p:growl id="growl" style="z-index:1" showDetail="true" sticky="true" life="6000" />
+				<p:panelGrid columns="2" id="unosVozilaPanel" styleClass="unosVozila">
+					<f:facet name="header">
+						Sva polja je obavezno popuniti!
+					</f:facet>
+					<h:outputLabel value="Marka: " />
+					<p:inputText value="#{unosVozilaManagedBean.vozilo.marka}"
+						request="true" />
+					<h:outputLabel value="Model: " />
+					<p:inputText value="#{unosVozilaManagedBean.vozilo.model}" />
+					<h:outputLabel value="Godište: " />
+					<p:calendar value="#{unosVozilaManagedBean.vozilo.godiste}"
+						pattern="yyyy" mask="true"/>
+					<h:outputLabel value="Registracioni broj: " />
+					<p:inputText value="#{unosVozilaManagedBean.vozilo.brRegistracije}" />
+					<h:outputLabel value="Registracija ističe: " />
+					<p:calendar value="#{unosVozilaManagedBean.vozilo.rokRegistracije}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<h:outputLabel value="Datum tehničkog pregleda: " />
+					<p:calendar value="#{unosVozilaManagedBean.vozilo.tehnickiPregled}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />	
+					<h:outputLabel value="Tip goriva: " />
+					<h:selectOneRadio value="#{unosVozilaManagedBean.vozilo.gorivo}">
+						<f:selectItem itemValue="Benzin" itemLabel="Benzin" />
+						<f:selectItem itemValue="Dizel" itemLabel="Dizel" />
+					</h:selectOneRadio>
+					<h:outputLabel value="Pređena kilometraža: " />
+					<p:inputText
+						value="#{unosVozilaManagedBean.vozilo.mesecnaKilometraza}" />
+					<h:outputLabel value="Mesečna potrošnja (u LITRIMA): " />
+					<p:inputText
+						value="#{unosVozilaManagedBean.vozilo.mesecnaPotrosnja}" />
+					<h:outputLabel value="Troškovi održavanja (godišnji): " />
+					<p:inputText
+						value="#{unosVozilaManagedBean.vozilo.troskoviOdrzavanja}" />
+					<h:outputLabel value="Kategorija" for="kategorije" />
+					<p:selectOneMenu id="kategorije" styleClass="select1MenuKategorijaUnosVozilaClass"
+						value="#{unosVozilaManagedBean.vozilo.kategorija}">
+						<f:converter converterId="kategorijaVoziloConverter" />
+						<f:selectItems
+							value="#{kategorijaVoziloManagedBean.sveKategorije}" var="kat"
+							itemLabel="#{kat.naziv}" itemValue="#{kat}" />
+					</p:selectOneMenu>
+					<f:facet name="footer">
+						<p:commandButton value="Sačuvaj" styleClass="dugmeUnosInstruktora" action="#{unosVozilaManagedBean.sacuvajVozilo()}"
+							render="panelVozila" execute="@this" update="growl"/>
+						<p:commandButton value="Obriši" update="unosVozilaPanel" process="@this" 
+						   styleClass="dugmeObrisi">
+								<p:resetInput target="unosVozilaPanel" />
+						</p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

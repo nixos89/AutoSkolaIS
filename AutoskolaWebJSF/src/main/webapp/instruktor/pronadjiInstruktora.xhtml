@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<!-- Dodeljuju mu se VOZILA i KATEGORIJE!!! => Mogu se praviti posebni ManagedBean-ovi
+	 ili se moze koristiti postojeci (tj. "unosInstruktoraManagedBean.java")!!!  -->
+
+<!-- Prvo dodeli KATEGORIJE Instruktoru, pa tek onda VOZILA na osnovu SELEKTOVANIH kategorija...
+     npr. mozes iskoristiti Ajax Framework - Dropdown sa PrimeFaces sajta ...
+     jos nesto VAZNO: id Instruktora se mora proslediti, ili se naci instruktor po zadatom 
+     parametru (npr. JMBG) i TEK onda mu se dodele kategorije i na OSNOVU kategorija VOZILO!!! -->
+
+<h:body>
+	<ui:composition
+		template="../resources/templates/instruktorTemplate.xhtml">
+		<ui:define name="head">
+			<title>Pretraga instruktora</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="pretragaInstNaslov">Unesite paramtere za pretragu instruktora</h1>	
+			<h:form id="formPretragaInstruktora">
+				<p:growl id="growlNadjiInstruktora" style="z-index:1" showDetail="true" sticky="true" life="6000" />
+				<p:panelGrid columns="2" styleClass="pretragaInstruktora" columnClasses="boja1Kolone,boja1Kolone">
+					<h:outputLabel value="Ime" />
+					<p:inputText value="#{unosInstruktoraManagedBean.imeInst}" />
+					<h:outputLabel value="Prezime" />
+					<p:inputText value="#{unosInstruktoraManagedBean.prezimeInst}" />
+					<h:outputLabel value="JMBG" />
+					<p:inputText value="#{unosInstruktoraManagedBean.jmbg}" />
+					<p:commandButton value="Pretraži" styleClass="dugme"
+						action="#{unosInstruktoraManagedBean.findInstruktorsByImePrezimeJmbg()}"
+						render="instruktorPanel" ajax="false" process="@form" />
+					<h:outputLabel value="" />	
+				</p:panelGrid>
+			</h:form>
+			<br />
+			<br />
+
+			<h:form id="form">
+				<p:panelGrid columns="2" id="instruktorPanel"
+					styleClass="listaInstruktoraPanelGrid"
+					rendered="#{unosInstruktoraManagedBean.instruktors.size()>0}">
+					<p:dataTable id="instruktors" var="instruktor"
+						value="#{unosInstruktoraManagedBean.instruktors}"
+						stickyHeader="true">
+						<f:facet name="header">
+        					Lista instruktora        				
+						</f:facet>
+						<br />
+						<br />
+						<p:column style="width:16px">
+            				<p:rowToggler />
+        				</p:column>
+						<p:column headerText="Ime">
+							<p:outputLabel value="#{instruktor.ime}" />
+						</p:column>
+						<p:column headerText="Prezime">
+							<p:outputLabel value="#{instruktor.prezime}" />
+						</p:column>
+						<p:column headerText="JMBG">
+							<p:outputLabel value="#{instruktor.jmbg}" />
+						</p:column>
+						<p:column headerText="Kategorije">
+							<ui:repeat value="#{instruktor.kategorijas}" var="kat">
+								<li>#{kat.naziv}</li>
+							</ui:repeat>
+						</p:column>
+						<p:column headerText="Vozila">
+							<ui:repeat value="#{instruktor.vozilos}" var="vozilo">
+								<li>#{vozilo.marka}-#{vozilo.model}</li>
+							</ui:repeat>
+						</p:column>
+						<p:column headerText="Ažuriraj">
+							<p:commandButton
+								render="azurirajInstruktora.unosInstruktoraPanel"
+								action="#{unosInstruktoraManagedBean.nadjiInstruktora(instruktor.idInstruktor)}"
+								value="Instruktora" ajax="false" process="@this" />
+							<br/><br/>
+							<p:commandButton
+								render="dodeliVoziloInstruktoru.dodelaVozilaInstruktoruPanel"
+								action="#{unosInstruktoraManagedBean.nadjiInstruktora2(instruktor.idInstruktor)}"
+								value="Dodeli vozilo" ajax="false" process="@this" />
+							
+						</p:column>
+						<p:column headerText="Obriši">
+							<p:commandButton
+								action="#{unosInstruktoraManagedBean.obrisiInstruktora(instruktor)}"
+								value="Instruktora" ajax="false" process="@this" styleClass="dugmeObrisiInstruktora"/>
+						</p:column>
+						<p:rowExpansion>
+							<p:panelGrid columns="2" columnClasses="label,value" styleClass="podPanelGridClassInstruktor">
+								<f:facet name="header">Dodatne informacije instruktora</f:facet>
+								<h:outputText value="Br. lične karte:" />
+								<h:outputText value="#{instruktor.brLicnekarte}" />
+								<h:outputText value="Datum rođenja:" />
+								<h:outputText value="#{instruktor.datumrodjenja}" />
+								<h:outputText value="Broj telefona:" />
+								<h:outputText value="#{instruktor.telefon}" />
+								<h:outputText value="Email adresa:" />
+								<h:outputText value="#{instruktor.email}" />
+								<h:outputText value="Adresa:" />
+								<h:outputText value="#{instruktor.ulica} #{instruktor.broj}" />
+								<h:outputText value="Mesto:" />
+								<h:outputText value="#{instruktor.mesto}" />
+							</p:panelGrid>
+						</p:rowExpansion>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

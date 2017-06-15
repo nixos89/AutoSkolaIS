@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Evidencija prijave</title>
+	<h:outputStylesheet library="css" name="styleKandidat.css"  />
+</h:head>
+
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">	
+			<title>Prijava ispita</title>
+		</ui:define>
+		<ui:define name="content">
+			<h2>Prijava ispita za kandidata:
+				#{unosEvidencijeManagedBean.kandidat},<br/>
+				Datum upisa: #{unosEvidencijeManagedBean.kandidat.evidencija.datumupisa},<br/>
+				Lekarsko uverenje izdato: #{unosEvidencijeManagedBean.kandidat.evidencija.datumIzdavanjaLu}
+				</h2>	
+			<h:form>
+				<p:panelGrid id="unosPrijavePanelGrid" columns="2" styleClass="unosPrijavePanelGridClass">
+					<f:facet name="header">
+						Unesite samo jedan datum prijave ispita
+					</f:facet>
+					<h:outputLabel value="Datum prijave teorijskog ispita" />
+					<p:calendar value="#{unosEvidencijeManagedBean.datumPrijaveTI}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true" 
+						disabled="#{unosEvidencijeManagedBean.testoviKandidataSeSmejuPrijavitiOceniti(unosEvidencijeManagedBean.kandidat)}"
+						yearRange="c-100:c+10" mindate="#{unosEvidencijeManagedBean.evidencija.datumupisa}"/>
+					<h:outputLabel value="Datum prijave praktičnog ispita" />
+					<p:calendar value="#{unosEvidencijeManagedBean.datumPrijavePI}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" disabled="#{unosEvidencijeManagedBean.kandidatPaoTestove(unosEvidencijeManagedBean.kandidat)}"/>
+					<f:facet name="footer">
+						<h:commandButton value="Prijavi" action="#{unosEvidencijeManagedBean.sacuvajPrijavu()}"
+							execute="@form" render="@form" />
+					</f:facet>	
+				</p:panelGrid>
+			</h:form>
+			<br/><br/><br/><br/>
+			
+	<!-- Napravi da se voznja SME prijaviti AKKO je polozenti=true!!! => To znaci da ces morati implementirati 
+		 atribut DISABLED u polje za unos datumaPolaganjaVoznje da to PROVERI!!! -->
+			
+			<p:dataTable id="prijaveIspitaKandidata" var="prijava" styleClass="dataTablePrijaveKandidataClass"
+				value="#{unosEvidencijeManagedBean.prijaveZaKandidata()}">
+				<f:facet name="header">
+           			Datumi prijava ispita kandidata
+       			</f:facet>
+				<p:column headerText="ID prijave">
+					<p:outputLabel value="#{prijava.idPrijava}" />
+				</p:column>
+				<p:column headerText="Testovi">
+					<p:outputLabel value="#{prijava.datumprijavetispita}">
+						<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="Vožnja">
+					<p:outputLabel value="#{prijava.datumprijavepispita}">
+						<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+					</p:outputLabel>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

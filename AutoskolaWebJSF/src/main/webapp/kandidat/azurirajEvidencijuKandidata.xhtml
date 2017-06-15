@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">			
+			<title>Ažuriranje evidencije kandidata</title>
+		</ui:define>
+		<ui:define name="content">
+			<h2>Ažuriranje evidencije kandidata:
+				#{unosEvidencijeManagedBean.kandidat}</h2>
+			<h:form>
+			  <div class="sadrzaj">	
+				<p:panelGrid columns="2" id="azuriranjeEvidencijePanelGrid" styleClass="azuriranjeEvidencijePanelGridClass">
+					<f:facet name="header">
+						Promenite podatke
+					</f:facet>
+					<p:outputLabel value="Broj lekarskog uverenja:" />
+					<p:inputText
+						value="#{unosEvidencijeManagedBean.evidencija.brLekarUverenja}" />
+					<p:outputLabel value="Datum izdavanja uverenja:" />
+					<p:calendar
+						value="#{unosEvidencijeManagedBean.evidencija.datumIzdavanjaLu}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<p:outputLabel value="Datum upisa:" />
+					<p:calendar
+						value="#{unosEvidencijeManagedBean.evidencija.datumupisa}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<f:facet name="footer">
+						<h:commandButton value="Ažuriraj"
+							action="#{unosEvidencijeManagedBean.azurirajEvidenciju2()}"
+							render="azuriranjeEvidencije" execute="@form" update="growlNadjiKandidata"/>
+					</f:facet>
+				</p:panelGrid>
+			  </div>	
+			</h:form>
+		</ui:define>
+	</ui:composition>		
+</h:body>
+</html>

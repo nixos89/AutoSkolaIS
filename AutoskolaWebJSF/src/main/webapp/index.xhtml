@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Prijava na sistem</title>
+	<h:outputStylesheet library="css" name="stylePocetna.css"  />
+</h:head>
+
+<!-- Napravi da se prijavljuje preko radioButton-a ili napravi link da se prijavi  -->
+<!-- posebno kao SEKRETARICA/instruktor/kandidat !!! -->
+
+<h:body>
+	<div class="slika">
+		<h:graphicImage library="images" name="logo2.png" />
+	</div>
+	<h:form id="form">
+		<h1>Prijava na sistem</h1>
+		<p:growl id="growl" style="z-index:1" showDetail="true" sticky="true" life="6000" />
+		<div class="divAdmin">
+			<h:outputLabel value="Korisničko ime:" />
+			<p:inputText value="#{korisniciManagedBean.user}" required="true"  requiredMessage="Morate uneti korisničko ime!"/><br/><br/>
+			<h:outputLabel value="Lozinka:" /> 
+			<p:password value="#{korisniciManagedBean.pass}" required="true" requiredMessage="Morate uneti lozinku!"/><br/><br/>
+			<h:outputLabel value="Tip korisnika:"/>
+			<div>
+				<h:selectOneRadio value="#{korisniciManagedBean.tipKorisnika}" class="radioButton" requiredMessage="Morate odabrati tip korisnika!">
+					<f:selectItem itemValue="kandidat" itemLabel="Kandidat" />
+					<f:selectItem itemValue="instruktor" itemLabel="Instruktor" />
+				</h:selectOneRadio>
+			</div>
+			<p:commandButton class="dugme" value="Prijavite se" action="#{korisniciManagedBean.logIn()}" 
+				 ajax="false" process="@form" update="growl"/>
+		</div>	
+	</h:form>
+	
+	<div class="footer">
+		<h:outputLabel value="&copy; Copyright Auto škoLa 2016,   21000 Novi Sad,Futoška 1,   br. telefona:021/61-23-456,  email:autoskolans021@gmail.com  "/>
+	</div>
+</h:body>
+</html>

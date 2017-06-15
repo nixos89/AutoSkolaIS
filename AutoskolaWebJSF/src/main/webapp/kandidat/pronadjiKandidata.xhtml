@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">			
+			<title>Pretraga kandidata</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Unesite paramtere za pretragu kandidata</h1>	
+			<h:form id="nadjiKandidataForm">
+				<p:growl id="growlNadjiKandidata" style="z-index:1" showDetail="true" sticky="true" life="6000" />
+				<p:panelGrid styleClass="panel2"
+					columnClasses="boja1Kolone,boja1Kolone" columns="2">
+					<h:outputLabel value="Ime" />
+					<p:inputText value="#{unosKandidataManagedBean.imeKand}" />
+					<h:outputLabel value="Prezime" />
+					<p:inputText value="#{unosKandidataManagedBean.prezimeKand}" />
+					<h:outputLabel value="JMBG" />
+					<p:inputText value="#{unosKandidataManagedBean.jmbg}" />
+					<p:commandButton value="Pretraži" styleClass="dugme"
+						action="#{unosKandidataManagedBean.findKandidatsByImePrezimeJmbg()}"
+						render="kandidatPanel" ajax="false" process="@form" />
+					<h:outputText value="" />
+				</p:panelGrid>
+			</h:form>
+			<br />
+			<br />
+
+			<h:form id="form">
+				<p:panelGrid columns="2" id="kandidatPanel"
+					styleClass="pronadjiKandidataPanelGrid"
+					rendered="#{unosKandidataManagedBean.kandidats.size()>0}">
+					<p:dataTable id="kandidats" var="kandidat"
+						value="#{unosKandidataManagedBean.kandidats}" stickyHeader="true"
+						cellpadding="10">
+						<f:facet name="header">
+        					Lista kandidata
+						</f:facet>
+						<p:column style="width:16px">
+            				<p:rowToggler />
+        				</p:column>
+						<p:column headerText="Ime">
+							<p:outputLabel value="#{kandidat.ime}" />
+						</p:column>
+						<p:column headerText="Prezime">
+							<p:outputLabel value="#{kandidat.prezime}" />
+						</p:column>
+						<p:column headerText="JMBG">
+							<p:outputLabel value="#{kandidat.jmbg}" />
+						</p:column>
+						<p:column headerText="Kategorija">
+							<p:outputLabel value="#{kandidat.kategorija.naziv}"
+								style="aligment:center" />
+						</p:column>
+						<p:column headerText="Instruktor">
+							<p:outputLabel
+								value="#{kandidat.instruktor.ime} #{kandidat.instruktor.prezime}"
+								style="aligment:center" />
+						</p:column>
+						<p:column headerText="Datum izdavanja lekarskog uverenja">
+							<p:outputLabel value="#{kandidat.evidencija.datumIzdavanjaLu}">
+								<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+							</p:outputLabel>
+						</p:column>
+						<p:column headerText="Ažuriraj">
+							<p:commandButton render="azurirajKandidata.unosKandidataPanel"
+								action="#{unosKandidataManagedBean.nadjiKandidata(kandidat.idKandidat)}"
+								value="Kandidata" ajax="false" process="@this" />
+							<br />
+							<br />
+							<p:commandButton
+								render="#{azurirajEvidencijuKandidata.azuriranjeEvidencije}"
+								action="#{unosEvidencijeManagedBean.zavediEvidenciju(kandidat.idKandidat)}"
+								value="Evidenciju" ajax="false" process="@this" />
+						</p:column>
+						<p:column headerText="Ispit">
+							<p:commandButton render="prijava.unosPrijavePanel"
+								action="#{unosEvidencijeManagedBean.zavediPrijavu(kandidat.idKandidat)}"
+								value="Prijavi" ajax="false" process="@this" />
+							<br />
+							<br />
+							<p:commandButton render="polaganje.unosPolaganjaPanel"
+								action="#{unosEvidencijeManagedBean.zavediPolaganje(kandidat.idKandidat)}"
+								value="Oceni" ajax="false" process="@this" />
+						</p:column>
+						<p:column headerText="Obriši">
+							<p:commandButton
+								action="#{unosKandidataManagedBean.obrisiKandidata(kandidat)}"
+								value="Kandidata" ajax="false" process="@this" styleClass="dugmeObrisiKandidata"/>
+						</p:column>
+						<br/><br/>
+						<p:rowExpansion>
+							<p:panelGrid columns="2" columnClasses="label,value" styleClass="podPanelGridClassKandidat">
+								<f:facet name="header">Dodatne informacije kandidata</f:facet>
+								<h:outputText value="Br. lekarskog uverenja:" />
+								<h:outputText value="#{kandidat.evidencija.brLekarUverenja}" />
+								<h:outputText value="Br. lične karte:" />
+								<h:outputText value="#{kandidat.brLicnekarte}" />
+								<h:outputText value="Datum rođenja:" />
+								<h:outputText value="#{kandidat.datumrodjenja}" >
+									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+								</h:outputText>
+								<h:outputText value="Datum upisa:" />
+								<h:outputText value="#{kandidat.evidencija.datumupisa}">
+									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+								</h:outputText>								
+								<h:outputText value="Broj telefona:" />
+								<h:outputText value="#{kandidat.telefon}" />
+								<h:outputText value="Email adresa:" />
+								<h:outputText value="#{kandidat.email}" />
+								<h:outputText value="Adresa:" />
+								<h:outputText value="#{kandidat.ulica} #{kandidat.broj}" />
+								<h:outputText value="Mesto:" />
+								<h:outputText value="#{kandidat.mesto}" />
+							</p:panelGrid>
+						</p:rowExpansion>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

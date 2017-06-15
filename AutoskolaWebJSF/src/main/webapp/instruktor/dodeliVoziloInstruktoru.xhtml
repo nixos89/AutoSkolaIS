@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+
+<h:body>
+	<ui:composition template="../resources/templates/instruktorTemplate.xhtml">
+		<ui:define name="head">
+			<title>Dodela vozila instruktora</title>
+		</ui:define>
+		<ui:define name="content">
+			<h:form id="form">
+				<h1>Dodelite vozilo instruktoru:
+					#{unosInstruktoraManagedBean.instruktor}</h1>
+				<p:panelGrid columns="2" id="dodelaVozilaInstruktoruPanel" styleClass="dodelaVozilaInstruktoruPanelClass">
+					<f:facet name="header">Izaberite vozila za dodelu</f:facet>
+					<p:outputLabel value="Instruktor" />
+					<p:outputLabel value="#{unosInstruktoraManagedBean.instruktor}" />
+					<p:outputLabel value="Vozila za instruktora" for="vozila" />
+					<p:selectManyCheckbox id="vozila"
+						value="#{unosInstruktoraManagedBean.listaModelVozila}"
+						layout="grid" columns="4">
+						<f:selectItems
+							value="#{unosInstruktoraManagedBean.vozilaZaInstruktora2}"
+							var="vozilas" itemLabel="#{vozilas}" itemValue="#{vozilas.model}" />
+					</p:selectManyCheckbox>
+					<f:facet name="footer">
+						<h:commandButton value="Sačuvaj"
+							action="#{unosInstruktoraManagedBean.updateInstruktor2()}"
+							render="dodelaVozilaInstruktoruPanel" execute="@form"
+							update="growlNadjiInstruktora" />
+					</f:facet>	
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

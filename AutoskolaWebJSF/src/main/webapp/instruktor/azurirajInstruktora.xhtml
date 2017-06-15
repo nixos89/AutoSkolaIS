@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+
+<h:body>
+	<ui:composition template="../resources/templates/instruktorTemplate.xhtml">
+		<ui:define name="head">
+			<title>Ažuriranje instruktora</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="naslovUpdateInstruktor">Ažurirajte podatke instruktora</h1>
+			<h:form>
+				<p:panelGrid columns="4" id="unosInstruktoraPanel" styleClass="pGUpdateInstruktorClass">
+					<f:facet name="header">Promenite podatke</f:facet>
+					<h:outputLabel value="Ime:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.ime}" />
+					<h:outputLabel value="Prezime:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.prezime}" />
+					<h:outputLabel value="Datum rodjenja:" />
+					<p:calendar
+						value="#{unosInstruktoraManagedBean.instruktor.datumrodjenja}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<h:outputLabel value="JMBG:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.jmbg}"
+						maxlength="13" />
+					<h:outputLabel value="Broj lične karte:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.brLicnekarte}"
+						maxlength="9" />
+					<h:outputLabel value="Email adresa:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.email}" 
+						requiredMessage="Email adresu je obavezno uneti!" required="true" maxlength="30">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+					<h:outputLabel value="Lozinka:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.lozinka}"
+						maxlength="8" required="true"
+						requiredMessage="Lozinku je obavezno uneti sa malim slovima i da je dužine 6-8 karaktera!" >
+							<f:validateRegex pattern="[a-z]{8}" />
+					</p:inputText>
+					<h:outputLabel value="Mesto:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.mesto}" />
+					<h:outputLabel value="Ulica:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.ulica}" />
+					<h:outputLabel value="Broj:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.broj}"
+						maxlength="5" />
+					<h:outputLabel value="Telefon:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.telefon}" />
+					<h:outputLabel value="Administrator:" />
+					<p:selectOneRadio
+						value="#{unosInstruktoraManagedBean.instruktor.admin}">
+						<f:selectItem itemValue="false" itemLabel="Ne" />
+						<f:selectItem itemValue="true" itemLabel="Da" />
+					</p:selectOneRadio>
+					<h:outputLabel value="Kategorije " for="kategorije" />
+					<p:selectManyCheckbox id="manyCheckBoxKat1"
+						value="#{unosInstruktoraManagedBean.listaNaziviKategorija}"
+						layout="grid" columns="5">
+						<f:selectItems
+							value="#{kategorijaInstruktorManagedBean.sveKategorije}"
+							var="kats" itemLabel="#{kats}" itemValue="#{kats}" />
+					</p:selectManyCheckbox>
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<f:facet name="footer">
+						<h:commandButton value="Sačuvaj"
+							action="#{unosInstruktoraManagedBean.updateInstruktor()}"
+							render="unosInstruktoraPanel" execute="@form" update="growlNadjiInstruktora"/>
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

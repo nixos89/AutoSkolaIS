@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+ 
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++++++++++++++++++++++++++ IZMENE ++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+ 
+ <!-- u pattern-u za validateRegEx za lozinku promenuto sa {8} na {6,8} i requredMessage 
+      je prebacen u <p:inputText..> tag iznad <f:validateRegex...> taga -->
+ 
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+ 
+<h:body>
+	<ui:composition template="../resources/templates/instruktorTemplate.xhtml">
+		<ui:define name="head">
+			<title>Kreiranje instruktora</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="naslovUnosa">Unesite podatke instruktora</h1>
+			<h:form>
+				<p:growl id="growl" style="z-index:1" showDetail="true" sticky="true" life="6000" />
+				<p:panelGrid columns="4" id="unosInstruktoraPanel" styleClass="unosInstruktora">
+					<f:facet name="header">
+						Sva polja je obavezno popuniti!
+					</f:facet>
+					<h:outputLabel value="Ime:" />
+					<p:inputText id="ime" value="#{unosInstruktoraManagedBean.instruktor.ime}" class="text"
+						requiredMessage="Morate uneti ime" required="true" promptLabel="Ime"
+						validatorMessage="Ime moze imati samo slova, prvo slovo mora biti veliko">
+<!-- 							<f:validateRegex pattern="[A-Z][a-z]+$" /> -->
+					</p:inputText>
+					<h:outputLabel value="Prezime:" />
+					<p:inputText id="prezime"
+						value="#{unosInstruktoraManagedBean.instruktor.prezime}" class="text"
+						requiredMessage="Morate uneti ime" required="true" promptLabel="Prezime"
+						validatorMessage="Prezime sme imati samo slova, prvo slovo mora biti veliko!">
+<!-- 							<f:validateRegex pattern="[A-Z][a-z]+$" /> -->
+					</p:inputText>
+					<h:outputLabel value="Datum rodjenja:" />
+					<p:calendar
+						value="#{unosInstruktoraManagedBean.instruktor.datumrodjenja}"
+						mask="true" pattern="dd.mm.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<h:outputLabel value="JMBG:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.jmbg}"
+						requiredMessage="JMBG je obavezno uneti!" required="true"
+						maxlength="13" ><f:validateRegex pattern="[0-9]{13}" /></p:inputText>
+					<h:outputLabel value="Broj lične karte:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.brLicnekarte}"
+						requiredMessage="Broj lične karte je obavezno uneti samo sa ciframa 0-9!" required="true"
+						maxlength="9" >
+							<f:validateRegex pattern="[0-9]{9}" />
+					</p:inputText>
+					<h:outputLabel value="Email adresa:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.email}" 
+						requiredMessage="Email adresu je obavezno uneti!" required="true" maxlength="30">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>	
+					<h:outputLabel value="Lozinka:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.lozinka}" 
+						maxlength="8" required="true" requiredMessage="Lozinku je obavezno uneti sa malim slovima i da je dužine 6-8 karaktera!">
+<!-- 							<f:validateRegex pattern="[a-z]{6,8}" />  -->
+					</p:inputText>
+					<h:outputLabel value="Mesto:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.mesto}" />
+					<h:outputLabel value="Ulica:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.ulica}" />
+					<h:outputLabel value="Broj:" />
+					<p:inputText value="#{unosInstruktoraManagedBean.instruktor.broj}" maxlength="5" />
+					<h:outputLabel value="Telefon:" />
+					<p:inputText
+						value="#{unosInstruktoraManagedBean.instruktor.telefon}" 
+						requiredMessage="Broj telefona je obavezno uneti!" required="true"/>
+					<h:outputLabel value="Administrator:" />
+					<p:selectOneRadio value="#{unosInstruktoraManagedBean.instruktor.admin}">
+						<f:selectItem itemValue="false" itemLabel="Ne" />
+						<f:selectItem itemValue="true" itemLabel="Da" />
+					</p:selectOneRadio>
+					<h:outputLabel value="Kategorije " for="kategorije" />
+					<p:selectManyCheckbox id="kategorije" value="#{unosInstruktoraManagedBean.listaNaziviKategorija}"
+						layout="grid" columns="4">
+						<f:selectItems value="#{kategorijaInstruktorManagedBean.sveKategorije}" var="kategos" 
+									   itemLabel="#{kategos}" itemValue="#{kategos}" />
+					</p:selectManyCheckbox>
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+					<f:facet name="footer">
+						<p:commandButton value="Sačuvaj" action="#{unosInstruktoraManagedBean.sacuvajInstruktora(kategos)}"
+							render="unosInstruktoraPanel" styleClass="dugmeUnosInstruktora" process="@form" update="growl"/>
+						<p:commandButton value="Obriši" update="unosInstruktoraPanel"
+							process="@this" styleClass="dugmeObrisi">
+							<p:resetInput target="unosInstruktoraPanel" />
+						</p:commandButton>	
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

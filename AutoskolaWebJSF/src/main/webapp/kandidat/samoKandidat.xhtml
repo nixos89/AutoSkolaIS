@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- Pronadji nacin kako da "idKandidat" bude prosledjen na ovu stranicu i tako moze da
+     prijavi ispite i vidi ostvarene rezultate!!!!! -->
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">
+			<title>Kandidat-profilna</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Dobro došli #{korisniciManagedBean.kandidat.ime} #{korisniciManagedBean.kandidat.prezime}</h1>
+			<h:form>
+				<div id="glavniMeni">
+					<h:commandLink value="Početna stranica"
+						action="/kandidat/samoKandidat.xhtml?faces-redirect=true" />
+					<br/><br/>	
+					<h:commandLink value="Odjavite se"
+						action="#{korisniciManagedBean.logOut()}" />
+				</div>
+				<!--  Implementiraj da ove DVE akcije rade ISTO kao što rade i u režimu ADMINISTRATORA!!! -->
+				<div class="sadrzaj">
+					<p>Vaši podaci:</p>
+					<ul>
+						<li><b>Ime:</b> #{korisniciManagedBean.kandidat.ime}</li>
+						<li><b>Prezime</b>: #{korisniciManagedBean.kandidat.prezime}</li>
+						<li><b>Datum rođenja</b>:
+							#{korisniciManagedBean.kandidat.datumrodjenja}</li>
+						<li><b>JMBG</b>: #{korisniciManagedBean.kandidat.jmbg}</li>
+						<li><b>Adresa</b>: #{korisniciManagedBean.kandidat.ulica}
+							#{korisniciManagedBean.kandidat.broj}</li>
+						<li><b>Mesto</b>: #{korisniciManagedBean.kandidat.mesto}</li>
+						<li><b>Telefon</b>: #{korisniciManagedBean.kandidat.telefon}</li>
+					</ul>
+					
+					<p>Kao korisnik našeg sistema možete da:</p>
+					<ul>
+						<li>Prijavite ispite klikom na dugme 'Prijava ispita' <p:commandButton render="prijava.unosPrijavePanel"
+					action="#{unosEvidencijeManagedBean.zavediPrijavu(korisniciManagedBean.kandidat.idKandidat)}"
+					value="Prijava ispita" ajax="false" process="@this" /></li><br/>
+						<li>Proverite ostvarene rezultate na ispitima klikom na dugme 'Ostvareni rezultati' <p:commandButton value="Ostvareni rezultati"
+					action="#{unosEvidencijeManagedBean.zavediPolaganje2(korisniciManagedBean.kandidat.idKandidat)}"
+					ajax="false" process="@this" /></li>
+					</ul>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>	
+</h:body>
+</html>

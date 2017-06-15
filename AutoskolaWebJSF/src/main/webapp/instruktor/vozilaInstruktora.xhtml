@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Vozila instruktora</title>
+	<h:outputStylesheet library="css" name="styleInstruktor.css"  />
+</h:head>
+
+<h:body>
+	<div class="slika">
+		<h:graphicImage library="images" name="logo2.png" />
+	</div>
+			<h1>#{korisniciManagedBean.instruktor.ime}
+				#{korisniciManagedBean.instruktor.prezime}, unesite parametre za
+				pretragu vozila</h1>
+			<h:form>
+			<div id="glavniMeni">
+				<h:commandLink value="Instruktor-počenta"
+					action="/instruktor/samoInstruktor.xhtml?faces-redirect=true" />
+				<br />
+				<br />
+				<h:commandLink value="Vaši kandidati"
+					action="/instruktor/kandidatiInstruktora.xhtml?faces-redirect=true" />
+				<br /> <br />
+				<h:commandLink value="Vaša vozila"
+					action="/instruktor/vozilaInstruktora.xhtml?faces-redirect=true" />
+				<br /> <br />
+				<h:commandLink value="Odjavite se"
+					action="#{korisniciManagedBean.logOut()}" />
+			</div>
+		</h:form>	
+			<h:form>
+				<p:panelGrid columns="4" styleClass="pretragaVozilaInstruktora"
+				  columnClasses="boja1Kolone,boja1Kolone,boja1Kolone,boja1Kolone">
+					<h:outputLabel value="Marka" />
+					<p:inputText value="#{unosVozilaManagedBean.markaV}" />
+					<h:outputLabel value="Model" />
+					<p:inputText value="#{unosVozilaManagedBean.modelV}" />
+					<h:outputLabel value="Registracija" />
+					<p:inputText value="#{unosVozilaManagedBean.registracijaV}" />
+					<h:outputLabel value="Tip goriva" />
+					<p:selectOneMenu value="#{unosVozilaManagedBean.gorivoV}" styleClass="select1MenuGorivo">
+						<f:selectItem itemLabel="Odaberite..." itemValue="" />
+						<f:selectItem itemLabel="Benzin" itemValue="Benzin" />
+						<f:selectItem itemLabel="Dizel" itemValue="Dizel" />
+					</p:selectOneMenu>
+					<p:commandButton value="Pretraži" styleClass="dugme"
+						action="#{unosVozilaManagedBean.findVoziloInstruktoraByMarkaModelGorivoRegistracija(korisniciManagedBean.instruktor.idInstruktor)}"
+						render="voziloPanel" ajax="false" process="@form" />
+					<h:outputLabel value="" />	<h:outputLabel value="" />	<h:outputLabel value="" />	
+				</p:panelGrid>
+			</h:form>
+			<br />
+			<br />
+			<h:form id="form">
+				<p:panelGrid columns="2" id="voziloPanel"
+					rendered="#{unosVozilaManagedBean.vozilaInstruktora.size()>0}"
+					styleClass="voziloPanelGrid">
+					<p:dataTable var="vozilo"
+						value="#{unosVozilaManagedBean.vozilaInstruktora}"
+						stickyHeader="true" styleClass="voziloDataTable">
+						<p:column style="width:16px">
+            				<p:rowToggler />
+        				</p:column>
+						<p:column headerText="Marka">
+							<p:outputLabel value="#{vozilo.marka}" />
+						</p:column>
+						<p:column headerText="Model">
+							<p:outputLabel value="#{vozilo.model}" />
+						</p:column>
+						<p:column headerText="Kategorija">
+							<p:outputLabel value="#{vozilo.kategorija}" />
+						</p:column>
+						<p:column headerText="Godište">
+							<p:outputLabel value="#{vozilo.godiste}">
+								<f:convertDateTime pattern="yyyy" />
+							</p:outputLabel>
+						</p:column>
+						<p:column headerText="Gorivo">
+							<p:outputLabel value="#{vozilo.gorivo}" />
+						</p:column>
+						<p:column headerText="Registracioni broj">
+							<p:outputLabel value="#{vozilo.brRegistracije}" />
+						</p:column>
+						<p:column headerText="Izmeni">
+							<p:commandButton render="azurirajVozilo.azuriranjeVozilaPanel"
+								action="#{unosVozilaManagedBean.nadjiVozilo(vozilo.idVozila)}"
+								value="Ažuriraj" ajax="false" process="@this" />
+						</p:column>
+						<p:rowExpansion>
+							<p:panelGrid columns="2" columnClasses="label,value" styleClass="podPanelGridClassVozilo">
+								<f:facet name="header">Dodatne informacije vozila</f:facet>
+								<h:outputText value="Registracija ističe:" />
+								<h:outputText value="#{vozilo.rokRegistracije}"/>
+								<h:outputText value="Pređena kilometraža:" />
+								<h:outputText value="#{vozilo.mesecnaKilometraza} km" />
+								<h:outputText value="Litara (mesečno) utrošeno:" />
+								<h:outputText value="#{vozilo.mesecnaPotrosnja} L"/>
+								<h:outputText value="Godišnji troškovi održavanja:" />
+								<h:outputText value="#{vozilo.troskoviOdrzavanja} dinara"/>
+							</p:panelGrid>
+						</p:rowExpansion>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Instruktor - korisnik</title>
+	<h:outputStylesheet library="css" name="styleInstruktor.css"  />
+</h:head>
+
+<h:body>
+	<div class="slika">
+		<h:graphicImage library="images" name="logo2.png" />
+	</div>
+	<h:form id="formaSamoInstruktorMeni">
+		<div id="naslovnaPozdravnaPoruka">
+			<h1> Dobro došli #{korisniciManagedBean.instruktor.ime} #{korisniciManagedBean.instruktor.prezime}</h1>
+		</div>
+		<div id="glavniMeni">
+			<h:commandLink value="Instruktor-počenta" action="/instruktor/samoInstruktor.xhtml?faces-redirect=true"/>
+			<br/><br/>
+			<h:commandLink value="Vaši kandidati"
+				action="/instruktor/kandidatiInstruktora.xhtml?faces-redirect=true" />
+			<br /> <br /> 
+			<h:commandLink	value="Vaša vozila" 
+				action="/instruktor/vozilaInstruktora.xhtml?faces-redirect=true"/>				
+			<br /> <br /> 	
+			<h:commandLink value="Odjavite se" action="#{korisniciManagedBean.logOut()}"/>	
+		</div>
+		<div class="sadrzaj">
+			<p>Vaši podaci:</p>
+			<ul>
+				<li><b>Ime:</b> #{korisniciManagedBean.instruktor.ime}</li>
+				<li><b>Prezime</b>: #{korisniciManagedBean.instruktor.prezime}</li>
+				<li><b>Datum rođenja</b>:
+					#{korisniciManagedBean.instruktor.datumrodjenja}</li>
+				<li><b>JMBG</b>: #{korisniciManagedBean.instruktor.jmbg}</li>
+				<li><b>Adresa</b>: #{korisniciManagedBean.instruktor.ulica}
+					#{korisniciManagedBean.instruktor.broj}</li>
+				<li><b>Mesto</b>: #{korisniciManagedBean.instruktor.mesto}</li>
+				<li><b>Telefon</b>: #{korisniciManagedBean.instruktor.telefon}</li>
+				<li>
+					<b>Licence za kategorije</b>: 
+					<ul>
+						<ui:repeat value="#{korisniciManagedBean.instruktor.kategorijas}"
+							var="kat">
+							<li>#{kat.naziv}</li>
+						</ui:repeat>
+					</ul>
+				</li>
+			</ul>
+			<p>Odaberite u meniju sa leve strane operacije koje želite da izvršite.</p>
+		</div>	
+	</h:form>
+	<div class="footer">
+			<h:outputLabel value="&copy; Copyright Auto škoLa 2016,   21000 Novi Sad,Futoška 1,   br. telefona:021/61-23-456,  email:autoskolans021@gmail.com  "/> 
+	</div>
+</h:body>
+</html>

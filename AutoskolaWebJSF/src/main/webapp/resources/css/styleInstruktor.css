@@ -1,0 +1,355 @@
+@CHARSET "UTF-8";
+
+
+body{
+	background-color:#ccebfd;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.slika{
+	margin-left:20%;
+	margin-top:-3%;
+}
+
+.logOut{
+	float:right;
+	margin-top:-50px;
+}
+
+h1{
+	color:blue;
+	margin-top:-10px;
+	text-align:center;
+	text-shadow: 2px 2px white;
+}
+
+h1.instruktorHomeNaslov{
+	color:blue;
+	margin-top:-10px;
+	margin-right: 18%;
+	text-shadow: 2px 2px white;
+}
+
+
+h1.naslovUnosa{
+	color:blue;
+	margin-top:-10px;
+	margin-right: 17%;
+	text-shadow: 2px 2px white;
+}
+
+h1.naslovUpdateInstruktor{
+	color:blue;
+	margin-top:-10px;
+	text-align:center;
+	text-shadow: 2px 2px white;
+	margin-right:18%;
+}
+
+
+h1.pretragaInstNaslov{
+	color:blue;
+	margin-top:-10px;
+	margin-right: 17%;
+	text-shadow: 2px 2px white;
+}
+
+h1.izvestajiInstNaslov{
+	color:blue;
+	margin-top:-10px;
+	margin-right: 20%;
+	text-shadow: 2px 2px white;
+}
+
+.spanClasss{
+	background:pink;
+}
+
+.okvirMeni{
+	float:left;
+}
+
+#glavniMeni{
+	float:left;
+	margin-top:-14%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+.ui-datatable-data.ui-widget-content{
+	text-align:center;
+}
+
+
+.opis{
+	margin-top:5%;
+	margin-left:200px;
+	width:50%;
+	text-align:center;
+}
+
+.sadrzaj {
+	margin:5% 3% 5% auto;
+	width:70%;
+}
+
+a:link, a:visited {
+    color: blue;
+    text-align: center;
+    text-decoration: underlined;
+	position:relative;
+/*     background-color: #f44336; */
+/*     text-shadow:1px 1px black; */
+/*     display: inline-block; */
+/*     padding: 14px 25px; */
+}
+
+a:hover, a:active {
+    background-color: #8000ff;
+    color:white;
+}
+
+
+.ui-button.ui-state-default.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#a6ffa6;
+}
+
+.ui-button.ui-state-hover.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#3cff3c;
+}
+
+.ui-button.ui-state-default.dugmeUnosInstruktora{
+	color:black;
+	position: center;
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+}
+
+.ui-button.ui-state-hover.dugmeUnosInstruktora{
+	color:black;
+	position: center;
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+}
+
+.ui-button.ui-state-default.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-button.ui-state-hover.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-button.ui-state-default.dugmeObrisiInstruktora{
+	box-shadow: 1px 1px 1px black;
+	background:#ff9f9f;
+	margin-left:5px;
+	color:black;
+}
+
+
+.ui-button.ui-state-hover.dugmeObrisiInstruktora{
+	box-shadow: 1px 1px 1px black;
+	background:#ff0000;
+	margin-left:5px;
+	color:black;
+}
+
+
+.panel1{
+	align-content:center;
+	align-text:center;
+	family-font:arial;
+	padding: 2px;
+	background: #67b1e9;
+	font-size:18px;
+	width: 300x;
+/* 	margin: 5px auto; */
+	margin-left:460px;
+	box-shadow: 5px 5px 25px black;
+	color: white;
+	text-shadow:1px 1px black;
+}
+
+.ui-panelgrid.ui-widget.panel2{
+	align-content:center;
+	family-font:Arial;
+	width:50%;
+	margin-left:345px;
+}
+
+.ui-panelgrid.ui-widget.unosInstruktora{
+	margin-left:20%;
+	margin-bottom:5%;
+}
+
+.ui-panelgrid.pretragaInstruktora{
+	margin-left:480px;
+	padding: 2px;
+	font-size:18px;
+	width: 500x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+.boja1Kolone{
+	color:white;
+	text-shadow:1px 1px black;
+	background-color:#67b1e9;
+	family-font:tahoma;
+}
+
+.boja1Kolone tr{
+	border:3px;
+}
+
+.ui-panelgrid.pretragaVozilaInstruktora{
+	margin-left:310px;
+	padding: 2px;
+	font-size:18px;
+	width: 498x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+
+.ui-selectonemenu.select1MenuGorivo{
+	width:190px;
+}
+
+.panelGridInstruktori{
+	width:80%;
+}
+
+.ui-panelgrid.ui-widget.listaInstruktoraPanelGrid{
+	margin-bottom:5%;
+}
+
+.ui-panelgrid.ui-widget.podPanelGridClassInstruktor{
+	width:500px;
+	margin-left: 35%;
+}
+
+.ui-panelgrid.ui-widget.pGUpdateInstruktorClass{
+	margin-left: 22%;
+    margin-bottom: 5%;
+}
+
+.ui-panelgrid.ui-widget.dodelaVozilaInstruktoruPanelClass{
+	margin-left: 30%;
+    margin-bottom: 5%;
+}
+
+.klasaMeniInstruktorForma{
+	margin:0 auto;
+	width:50%;
+}
+
+/* ovaj radi!*/
+.ui-datatable{
+	width:99%;	
+}
+
+.ui-datatable-column-outputLabel{
+	text-align:center;
+}
+
+/* Stilizovanje instruktor.xhtml stranice*/
+
+#panelInstruktorMeni{
+	position:center;
+}
+
+/* --------------------------------------------------------------------------- */
+/* stilizovanje panela forme za pronalazenje kandidata ulogovanog instruktora! */
+/* --------------------------------------------------------------------------- */
+.ui-panelgrid.panel2{
+	margin: 5px auto;
+	padding: 2px;
+	font-size:18px;
+	width: 500x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+.ui-panelgrid.panelGridPretragaKandidataSamo1InstruktoraClass{
+	margin: 5px auto;
+	padding: 2px;
+	font-size:18px;
+	width: 400x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+.boja1Kolone{
+	color:white;
+	text-shadow:1px 1px black;
+	background-color:#67b1e9;
+	family-font:tahoma;
+}
+
+.boja1Kolone tr{
+	border:3px;
+}
+
+.ui-panelgrid.ui-widget.pronadjiKandidataPanelGrid{
+	margin-bottom:5%;	
+}
+
+.ui-panel.ui-widget.panelIzvestajiInstruktoraClass{
+	width:550px;
+	margin-left:380px;
+	margin-bottom:5%;
+}
+
+/* stilizovanje rowExpand-a za pretragu Kandidata SAMO jednog instruktora*/
+.ui-panelgrid.ui-widget.podPanelGridClassKandidat{
+	width:450px;
+	margin-left: 35%;
+}
+
+/* stilizovanje rowExpand-a za pretragu Vozila SAMO jednog instruktora*/
+.ui-panelgrid.ui-widget.podPanelGridClassVozilo{
+	width:450px;
+	margin-left: 35%;
+}
+
+.panelIzvestajiInstruktoraClass .ui-panel-titlebar{
+	height:20px;
+	text-align:center;
+	/*naknadno dodate 4 linije koda*/
+	padding: .5em 1em .3em;
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 522px;
+}
+
+.ui-panelgrid.ui-widget.pgPrviIzvestajInstClass{
+	margin-left:15%;
+}
+
+/* --------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------- */
+
+.footer{
+   position:fixed;
+   z-index:10; /* 10 se uzima kao najvisi stack order elementa */
+   text-align:center;
+   left:0;
+   font-size:14px;
+   bottom:0;
+   width:100%;
+   background:#e0e0e0;
+   height:14px;
+}

@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+body{
+/* 	background-image:url("#{resource['images:logo1.jpg']}"); */
+	background-color:#ccebfd;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+h1{
+	color:blue;
+	margin-top:-10px;
+	text-align:center;
+	text-shadow: 2px 2px white;
+}
+
+h1.pozdravnaPoruka{
+	color:blue;
+	margin-top:-10px;
+	margin-right: 18%;
+	text-shadow: 2px 2px white;
+}
+
+.sadrzaj {
+	margin:5% 3% 5% auto;
+	width:70%;
+}
+
+.slika{
+	margin-left:20%;
+	margin-top:-3%;
+}
+
+/*NE radi na stranici "sekretarica.xhtml", tj. kao class nego SAMO kao id*/
+.glavniMeni{
+	float:left;
+	margin-top:-14%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+.prijavaPanel .ui-panel{
+	align-content:center;
+	margin-left:50px;
+}
+
+.logOut{
+	float:right;
+}
+
+.divAdmin {
+	margin:0 auto;
+	width:22% !important;
+	z-index:1;
+}
+
+.divAdmin input {
+	margin-left: 7em;
+}
+
+.divAdmin label {
+	position: absolute;
+}
+
+.divAdmin .radioButton{
+	position:center;
+	margin-top:0;
+	margin-left:40px;
+}
+
+.divAdmin .dugme {
+	float: right;
+	width:70% !important;
+	margin-right:5%;
+	top:25px;
+	color:black;
+/* 	text-shadow: 5px 5px 5px 5px black; */
+	position: center;
+	box-shadow: 3px 3px 3px black;
+	background:#36bdfe;
+}
+
+
+
+#glavniMeni{
+	float:left;
+	margin-top:-10%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+a:link, a:visited {
+	position:relative;
+	color: blue;
+    text-align: center;
+    text-decoration: underlined;
+}
+
+a:hover, a:active {
+    background-color: #8000ff;
+    color:white;
+}
+
+.footer{
+   position:fixed;
+   z-index:10; /* 10 se uzima kao najvisi stack order elementa */
+   text-align:center;
+   left:0;
+   font-size:14px;
+   bottom:0;
+   width:100%;
+   background:#e0e0e0;
+   height:14px;
+}

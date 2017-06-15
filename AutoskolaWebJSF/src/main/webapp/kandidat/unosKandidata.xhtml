@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+
+<!-- Proveri da li je bolje koristiti unosEvidencijeManagedBean.evidencija, pa onda to polje pozvati -->
+<!-- kao ManagedProperty iz unosEvidencijeManagedBean klase kad se budu na ovoj istoj stranici  -->
+<!-- unosili podaci za kandidata!!! -->
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">			
+			<title>Kreiranje kandidata</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="naslovUnosKandidata">Unesite podatke kandidata</h1>
+			<br />
+			<h:form id="formaKandidata">
+				<p:growl id="growl" showDetail="true" sticky="true" life="6000"/>
+				<p:panelGrid columns="4" id="unosKandidataPanelGrid"
+					styleClass="unosKandidataPGClass">
+					<f:facet name="header">
+						Polja označena sa tekstom crvene boje je obavezno popuniti! 
+					</f:facet>
+					<h:outputLabel value="Broj lekarskog uverenja:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.brLekUV}"
+						maxlength="10" required="true" >
+						<f:validateRegex pattern="((?=.*[A-Z])(?=.*[0-9])(?=.*[A-Z]).{10})" />
+					</p:inputText>	
+					<h:outputLabel value="Izdavanje lekarskog uverenja:" style="color:red;"/>
+					<p:calendar value="#{unosKandidataManagedBean.datumIzdLu}"
+						pattern="dd.MM.yyyy" mask="true" navigator="true"
+						required="true" yearRange="c-100:c+10" />
+					<h:outputLabel value="Datum upisa:" style="color:red;"/>
+					<p:calendar value="#{unosKandidataManagedBean.datumUpisa}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						required="true" yearRange="c-100:c+10" />					
+					<h:outputLabel value="Ime:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.ime}" class="text"
+						maxlength="20" requiredMessage="Morate uneti ime" required="true" promptLabel="Ime"
+						validatorMessage="Ime moze imati samo slova, prvo slovo mora biti veliko">
+							<f:validateRegex pattern="[A-Z][a-z]+$" />
+					</p:inputText>		
+					<h:outputLabel value="Prezime:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.prezime}" class="text"
+						maxlength="20" requiredMessage="Morate uneti prezime" required="true" promptLabel="Prezime"
+						validatorMessage="Prezime moze imati samo slova, prvo slovo mora biti veliko">
+<!-- 							<f:validateRegex pattern="[ć][A-Z][a-z][Ć,ć]+$" /> -->
+					</p:inputText>		
+					<h:outputLabel value="Datum rođenja:" style="color:red;"/>
+					<p:calendar
+						value="#{unosKandidataManagedBean.kandidat.datumrodjenja}"
+						pattern="dd.MM.yyyy" mask="true" navigator="true"
+						yearRange="c-100:c+10" required="true" />
+					<h:outputLabel value="JMBG:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.jmbg}" promptLabel="JMBG"
+						maxlength="13" requiredMessage="JMBG je obavezno uneti!" required="true"
+						id="jmbg" >
+							<f:validateRegex pattern="[0-9]{13}" />
+					</p:inputText>
+					<h:outputLabel value="Broj lične karte:" style="color:red;"/>
+					<p:inputText
+						value="#{unosKandidataManagedBean.kandidat.brLicnekarte}"
+						maxlength="9" requiredMessage="Broj lične karte je obavezno uneti!" required="true">
+							<f:validateRegex pattern="[0-9]{9}" /></p:inputText>
+					<h:outputLabel value="Email adresa:" />
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.email}"
+						maxlength="30" />
+					<h:outputLabel value="Lozinka:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.lozinka}"
+						maxlength="8" required="true"
+						requiredMessage="Lozinku je obavezno uneti sa malim slovima i da je dužine 6-8 karaktera!" >
+							<f:validateRegex pattern="((?=.*[a-z])(?=.*[0-9]).{8})" />
+					</p:inputText>
+					<h:outputLabel value="Mesto:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.mesto}"
+						maxlength="30" required="true" />
+					<h:outputLabel value="Ulica:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.ulica}"
+						maxlength="30" required="true"/>
+					<h:outputLabel value="Broj:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.broj}"
+						maxlength="5" required="true" />
+					<h:outputLabel value="Telefon:" style="color:red;"/>
+					<p:inputText value="#{unosKandidataManagedBean.kandidat.telefon}"
+						maxlength="15" required="true" />
+					<h:outputLabel value="Kategorija:" for="kategorija" style="color:red;"/>
+					<p:selectOneMenu id="kategorija" styleClass="kategorija1Menu"
+						value="#{unosKandidataManagedBean.nazivKategorije}"
+						onchange="submit()" effect="fold" required="true" 
+						requiredMessage="Morate odabrati kategoriju!"
+						valueChangeListener="#{unosKandidataManagedBean.localeChanged}">
+						<f:selectItem itemLabel="Izaberite..." itemValue="" />
+						<f:selectItems effect="fold"
+							value="#{unosKandidataManagedBean.listaNaziviKategorija}"
+							var="kat" itemLabel="#{kat}" itemValue="#{kat}" />
+					</p:selectOneMenu>
+					<h:outputLabel value="Instruktor:" for="instruktor" style="color:red;"/>
+					<p:selectOneMenu id="instruktor"
+						value="#{unosKandidataManagedBean.prezimeInstruktora}"
+						effect="fold" styleClass="instruktor1Menu" >
+							<f:selectItem itemLabel="Izaberite..." itemValue="" />
+							<f:selectItems
+								value="#{unosKandidataManagedBean.listaPunoImeInstruktora2}"
+								var="inst" itemLabel="#{inst}" itemValue="#{inst}" />
+					</p:selectOneMenu>	
+					<f:facet name="footer">
+						<p:commandButton value="Sačuvaj" styleClass="dugmeUnosKandidata"
+							action="#{unosKandidataManagedBean.sacuvajKandidata()}"
+							render="unosKandidataPanelGrid" process="@form" update="growl"/>
+						<p:commandButton value="Obriši" update="unosKandidataPanelGrid"
+							process="@this" styleClass="dugmeObrisi">
+							<p:resetInput target="unosKandidataPanelGrid" />
+						</p:commandButton>
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Evidencija polaganja</title>
+	<h:outputStylesheet library="css" name="styleKandidat.css"  />
+</h:head>
+
+<!-- Namesti da se za:
+		* PRIJAVU: unosi datum PRIJAVE teorijskog ispita, prakticnog ispita (prakticni ispit autoskola 
+		  SAMA zakazuje odnosno komisija-policija)
+		* POLAGANJE: unosi datum POLAGANJA TEORIJSKOG/PRAKTICNOG ispita, OSVOJENE bodove
+		  na TEORIJSKOM/PRAKTICNOM ispitu, polozen teorijski/praktican ispit kao 
+		  BOOLEAN radioButton (sa DA(polozio-true)/NE(pao-false))  
+		  
+	 -->
+	 
+	 <!-- Namesti da se stranica bude RENDERED (tj. rendered="prijavas.size()>0") akko je napravljena PRIJAVA, jer ako kandidat nije prijavio
+	      ispit onda NE SME da ga polaze!!! -->
+	 
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">	
+		<ui:define name="head">			
+			<title>Polaganje - rezultati</title>
+		</ui:define>
+		<ui:define name="content">
+			<h2>Ocenjivanje kandidata:
+				#{unosEvidencijeManagedBean.kandidat},<br/>
+				Datum upisa: #{unosEvidencijeManagedBean.kandidat.evidencija.datumupisa},<br/>
+				Lekarsko uverenje izdato: #{unosEvidencijeManagedBean.kandidat.evidencija.datumIzdavanjaLu}
+				</h2>	
+			<h:form>
+				<p:panelGrid id="unosPolaganjaPanel" columns="6">
+					<f:facet name="header">
+					Unesite rezultate ostvarene sa poslednjeg ispita
+				</f:facet>
+					<p:outputLabel value="Datum polaganja testova" />
+					<p:calendar value="#{unosEvidencijeManagedBean.datumPolaganjaTI}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" />
+					<p:outputLabel value="Ostvareni bodovi na testovima" />
+					<p:inputText value="#{unosEvidencijeManagedBean.poeniTI}" />
+					<p:outputLabel value="Položeni testovi" />
+					<p:selectOneRadio value="#{unosEvidencijeManagedBean.polozioTI}">
+						<f:selectItem itemValue="false" itemLabel="Pao" />
+						<f:selectItem itemValue="true" itemLabel="Položio" />
+					</p:selectOneRadio>
+					<p:outputLabel value="Datum polaganja vožnje" />
+					<p:calendar value="#{unosEvidencijeManagedBean.datumPolaganjaPI}"
+						mask="true" pattern="dd.MM.yyyy" navigator="true"
+						yearRange="c-100:c+10" disabled="#{unosEvidencijeManagedBean.kandidatPaoTestove(unosEvidencijeManagedBean.kandidat)}" />
+					<p:outputLabel value="Ostvareni bodovi na vožnji" />
+					<p:inputText value="#{unosEvidencijeManagedBean.poeniPI}" disabled="#{unosEvidencijeManagedBean.kandidatPaoTestove(unosEvidencijeManagedBean.kandidat)}"/>
+					<p:outputLabel value="Položena vožnja" />
+					<p:selectOneRadio value="#{unosEvidencijeManagedBean.polozioPI}" disabled="#{unosEvidencijeManagedBean.kandidatPaoTestove(unosEvidencijeManagedBean.kandidat)}">
+						<f:selectItem itemValue="false" itemLabel="Pao" />
+						<f:selectItem itemValue="true" itemLabel="Položio" />
+					</p:selectOneRadio>
+					<f:facet name="footer">
+						<h:commandButton value="Sačuvaj"
+							action="#{unosEvidencijeManagedBean.sacuvajPolaganje()}"
+							execute="@form" render="@form" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+			<br />
+			<br />
+			<br />
+			<h:form>
+				<p:dataTable id="polaganjaIspitaKandidata"
+					styleClass="polaganjaDataTable" var="polaganje"
+					value="#{unosEvidencijeManagedBean.polaganjaOdKandidata()}">
+					<f:facet name="header">
+					Ostvareni rezultati
+				</f:facet>
+					<p:column headerText="Datum polaganja teorijskog ispita">
+						<p:outputLabel value="#{polaganje.datumpolaganjati}">
+							<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+						</p:outputLabel>
+					</p:column>
+					<p:column headerText="Bodovi (test)">
+						<p:outputLabel value="#{polaganje.bodoviti}" />
+					</p:column>
+					<p:column headerText="Položeni testovi">
+						<p:outputLabel value="#{polaganje.polozenti ? 'Da':'Ne'}" />
+					</p:column>
+					<p:column headerText="Datum polaganja vožnje">
+						<p:outputLabel value="#{polaganje.datumpolaganjapi}">
+							<f:convertDateTime pattern="dd-MM-yyyy" timeZone="CET"/>
+						</p:outputLabel>
+					</p:column>
+					<p:column headerText="Bodovi (vožnja)">
+						<p:outputLabel value="#{polaganje.bodovipi}" />
+					</p:column>
+					<p:column headerText="Položena vožnja">
+						<p:outputLabel value="#{polaganje.polozenpi ? 'Da':'Ne'}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition> 	
+</h:body>
+</html>

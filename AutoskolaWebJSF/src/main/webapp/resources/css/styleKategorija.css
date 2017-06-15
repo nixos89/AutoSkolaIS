@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+body{
+/* 	background-image:url("#{resource['images:logo1.jpg']}"); */
+	background-color:#ccebfd;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+h1{
+	text-align:center;
+	margin-top:0%;
+}
+
+.divUputstvoKat{
+	width:500px;
+	background:#93c4f4;
+	margin-left:30%;
+	margin-top: -2%;
+    margin-bottom: 1%;
+    border: double;
+}
+
+.slika{
+	margin-left:20%;
+	margin-top:-3%;
+}
+
+.glavniMeni{
+	float:left;
+	margin-top:-13%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}	
+
+#glavniMeni{
+	float:left;
+	margin-top:-14%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}	
+
+.ui-datatable-data.ui-widget-content{
+	text-align:center;
+}
+
+.ui-panelgrid.ui-widget.unosKategorijePanelGridClass{
+	margin-left:400px;
+	width:500px;	
+}
+
+.ui-panelgrid.ui-panelgrid-footer.unosKategorijePanelGridClass{
+	height:40px;
+}
+
+.ui-panelgrid.ui-widget.listaKategorijaPanelClass{
+	margin-bottom:5%;
+	margin-left:400px;
+	margin-top:-36px; /*bilo je sve super na 40px, sad ovo radi testiranja*/
+	width:500px;
+}
+
+.footer{
+   position:fixed;
+   z-index:10; /* 10 se uzima kao najvisi stack order elementa */
+   text-align:center;
+   left:0;
+   font-size:14px;
+   bottom:0;
+   width:100%;
+   background:#e0e0e0;
+   height:14px;
+}

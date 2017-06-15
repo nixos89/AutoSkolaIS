@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/voziloTemplate.xhtml">
+		<ui:define name="head">
+			<title>Izveštaji za vozila</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Generisanje izveštaja vozila</h1>
+			<h:form>
+				<p:panel id="panelIzvestajiVozila" styleClass="panelIzvestajiVozilaClass" header="Izveštaji vozila">
+					<p:panelGrid id="panelGridIzvestajaVozilaMaxKm" columns="3"
+						styleClass="panelGridIzvestajaVozilaMaxKmClass">
+						<f:facet name="header">
+							Vozila sa najvećom pređenom kilometražom
+						</f:facet>
+						<p:outputLabel value="Odaberite kategoriju:"
+							for="kategorijaMenu" />
+						<p:selectOneMenu id="kategorijaMenu"
+							value="#{voziloReportManagedBean.idKategorije}">
+							<f:selectItem itemLabel="Izaberite kategoriju..." itemValue=""
+								noSelectOption="true" />
+							<f:selectItems value="#{voziloReportManagedBean.listaKategorija}"
+								var="voz" itemLabel="#{voz}" itemValue="#{voz.idKategorija}" />
+						</p:selectOneMenu>
+						<h:commandButton value="Generiši izveštaj"
+							action="#{voziloReportManagedBean.generateReport('maxKmVozilaZaKat')}"
+							render="form" execute="@form">
+						</h:commandButton>
+					</p:panelGrid>
+					<br/><br/>
+										
+					<p:panelGrid id="panelGridVozilaMaxInstruktora" styleClass="panelGridVozilaMaxInstruktoraClass"
+					  columns="2">	
+					  	<f:facet name="header">
+							Vozila sa najviše instruktora
+						</f:facet>
+						<p:outputLabel value="Lista vozila sa najviše instruktora sortirana silazno po broju instruktora" />
+						<h:commandButton value="Generiši izveštaj"
+							action="#{voziloReportManagedBean.generateReport('voziloSaMaxInstruktora')}"
+							render="form" execute="@form">
+						</h:commandButton>
+					</p:panelGrid>
+						
+					<br />
+					<br />
+					<p:panelGrid id="troskoviOdrzavanjaVozilaPanelGrid"
+						styleClass="troskoviOdrzavanjaVozilaPanelGridClass" columns="2">
+						<f:facet name="header">Troškovi za održavanje vozila</f:facet>
+						<h:outputLabel value="Kategorija:" for="kategorija" />
+						<p:inputText id="kategorija" value="#{voziloReportManagedBean.naziv}" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši izveštaj"
+								action="#{voziloReportManagedBean.generateReport('vozilaTroskoviOdrzavanja')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

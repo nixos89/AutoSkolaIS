@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">
+			<title>Kandidat</title>
+		</ui:define>
+		<ui:define name="content">
+			<h2>Ostvareni rezultati na ispitima kandidata #{korisniciManagedBean.kandidat.ime} #{korisniciManagedBean.kandidat.prezime}</h2>		
+			<h:form>
+				<p:dataTable id="polaganjaIspitaKandidata"
+					styleClass="polaganjaDataTable" var="polaganje"
+					value="#{unosEvidencijeManagedBean.polaganjaOdKandidata()}">
+					<p:column headerText="Datum polaganja teorijskog ispita">
+						<p:outputLabel value="#{polaganje.datumpolaganjati}" />
+					</p:column>
+					<p:column headerText="Bodovi (test)">
+						<p:outputLabel value="#{polaganje.bodoviti}" />
+					</p:column>
+					<p:column headerText="Položeni testovi">
+						<p:outputLabel value="#{polaganje.polozenti ? 'Da':'Ne'}" />
+					</p:column>
+					<p:column headerText="Datum polaganja vožnje">
+						<p:outputLabel value="#{polaganje.datumpolaganjapi}" />
+					</p:column>
+					<p:column headerText="Bodovi (vožnja)">
+						<p:outputLabel value="#{polaganje.bodovipi}" />
+					</p:column>
+					<p:column headerText="Položena vožnja">
+						<p:outputLabel value="#{polaganje.polozenpi ? 'Da':'Ne'}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition> 	
+</h:body>	   
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Izvestaj instruktora</title>
+	<h:outputStylesheet library="css" name="styleInstruktor.css"  />
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/instruktorTemplate.xhtml">
+		<ui:define name="head">
+			<title>Instruktor - izveštaji</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="izvestajiInstNaslov">Generišite izveštaje</h1>
+			<h:form>
+				<p:panel id="panelIzvestajiInstruktora" styleClass="panelIzvestajiInstruktoraClass" 
+				  header="Izveštaji instruktora" footer="Instrukcije: Klikom na dugme 'Generiši' izveštaji će se generisati u PDF formatu!">
+					
+					<span class="spanClasss"> - Izveštaj koji generiše instruktore po broju upisanih  kandidata
+					za unetu kategoriju i odabrane datume</span>
+					<br /> <br />	
+					<p:panelGrid styleClass="pgPrviIzvestajInstClass" columns="2">
+						<f:facet name="header"> Instruktori sa najviše upisanih kandidata</f:facet>
+						<h:outputLabel value="Kategorija" for="kategorija2" />
+						<p:inputText id="kategorija2" value="#{instruktorReportManagedBean.naziv}" />
+						<h:outputLabel value="Od:" for="datumOdCalendar" />
+						<p:calendar id="datumOdCalendar" value="#{instruktorReportManagedBean.datumOd}" mask="true"
+							pattern="yyyy.MM.dd" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Do:" for="datumDoCalendar" />
+						<p:calendar id="datumDoCalendar" value="#{instruktorReportManagedBean.datumDo}" mask="true"
+							pattern="yyyy.MM.dd" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{instruktorReportManagedBean.generateReport('instruktorMaxKandKat')}"
+								execute="@form" />
+						</f:facet>
+					</p:panelGrid>
+					<br/>	
+						
+					<span class="spanClasss"> - Izveštaj koji generiše sve
+						kandidate za odabradnog instruktora sortirane po kategoriji po
+						abecednom redosledu</span>
+					<br /> <br />					
+					<p:panelGrid columns="3" id="panelGridKandidatiInstruktora"
+						styleClass="panelGridKandidatiInstruktoraClass">
+						<f:facet name="header">Kandidati instruktora</f:facet>
+						<h:outputLabel value="Instruktor" for="instruktorMenu" />
+						<p:selectOneMenu id="instruktorMenu"
+							value="#{instruktorReportManagedBean.idInstruktora}"
+							styleClass="select1MenuInstMenu">
+							<f:selectItem itemLabel="Izaberite instruktora..." itemValue="" />
+							<f:selectItems
+								value="#{instruktorReportManagedBean.listaInstruktora}"
+								var="inst" itemLabel="#{inst}" itemValue="#{inst.idInstruktor}" />
+						</p:selectOneMenu>
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{instruktorReportManagedBean.generateReport('sviKandidatiInstruktora')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/>
+					
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>	
+</h:body>
+
+</html>

@@ -1,0 +1,255 @@
+@CHARSET "UTF-8";
+
+
+body{
+	background-color:#ccebfd;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.slika{
+	margin-left:20%;
+	margin-top:-3%;
+}
+
+h1{
+	color:blue;
+	margin-top:-10px;
+	margin-left:530px;
+	text-shadow: 2px 2px white;
+}
+
+h1.pretragaVozilaNaslov{
+	color:blue;
+	margin-top:-10px;
+	margin-left: 32%;
+	text-shadow: 2px 2px white;
+}
+
+#glavniMeni{
+	float:left;
+	margin-top:-14%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+.glavniMeni{
+	float:left;
+	margin-top:-14%;
+	border-radius: 25px;
+    background: pink;
+    padding:10px;
+    border-style:solid;
+}
+
+a:link, a:visited {
+    color: blue;
+    text-align: center;
+    text-decoration: underlined;
+    position:relative;
+}
+
+a:hover, a:active {
+    background-color: red;
+    color:white;
+}
+
+.ui-button.ui-state-default.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#a6ffa6;
+}
+
+.ui-button.ui-state-hover.dugme{
+	box-shadow: 1px 1px 1px black;
+	background:#3cff3c;
+}
+
+.ui-button.ui-state-default.dugmeObrisiVozilo{
+	box-shadow: 1px 1px 1px black;
+	background:#ff9f9f;
+	margin-left:5px;
+	color:black;
+}
+
+
+.ui-button.ui-state-hover.dugmeObrisiVozilo{
+	box-shadow: 1px 1px 1px black;
+	background:#ff0000;
+	margin-left:5px;
+	color:black;
+}
+
+
+.sadrzaj {
+	margin:5% 3% 25% auto;
+	
+	width:70%;
+}
+
+.ui-datatable-data.ui-widget-content{
+	text-align:center;
+}
+
+.ui-button.ui-state-default.dugmeUnosInstruktora{
+	color:black;
+	position: center;
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+}
+
+.ui-button.ui-state-hover.dugmeUnosInstruktora{
+	color:black;
+	position: center;
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+}
+
+.ui-button.ui-state-default.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#36bdfe;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-button.ui-state-hover.dugmeObrisi{
+	box-shadow: 1px 1px 1px black;
+	background:#0183c0;
+	margin-left:5px;
+	color:black;
+}
+
+.ui-selectonemenu.select1MenuGorivo{
+	width:190px;
+}
+
+.ui-selectonemenu.select1MenuKategorijaUnosVozilaClass{
+	width:190px;
+}
+
+
+.panel1{
+	align-content:center;
+	align-text:center;
+	family-font:arial;
+	padding: 2px;
+	background: #67b1e9;
+	font-size:18px;
+	width: 300x;
+	margin-left:380px;
+	box-shadow: 5px 5px 25px black;
+	color: white;
+	text-shadow:1px 1px black;
+}
+
+.ui-panelgrid.ui-widget.unosVozila{
+	width:550px;
+	margin-left:390px;
+	margin-bottom:5%;
+}
+
+.panelGridVozila{
+	width:60%;
+}
+
+.ui-panelgrid.pretragaVozila{
+	margin-left:310px;
+	padding: 2px;
+	font-size:18px;
+	width: 500x;
+	maring-left:400px;
+	box-shadow: 5px 5px 25px black;
+}
+
+.boja1Kolone{
+	color:white;
+	text-shadow:1px 1px black;
+	background-color:#67b1e9;
+	family-font:tahoma;
+}
+
+.boja1Kolone tr{
+	border:3px;
+}
+
+
+.ui-datatable{
+	width:100%;	
+}
+
+.ui-datatable-column-outputLabel{
+	text-align:center;
+}
+
+.ui-panelgrid.ui-widget.voziloPanelGrid{
+	margin-left:2px;
+	margin-top:2%;
+	margin-bottom:2%;
+}
+
+.ui-panelgrid.ui-widget.podPanelGridClassVozilo{
+	width:450px;
+	margin-left: 35%;
+}
+
+.ui-panelgrid.ui-widget.panelGridIzvestajaVozilaMaxKmClass{
+	margin-left:0%;
+	width:50%;
+}
+
+.ui-panelgrid.ui-widget.azuriranjeVozilaPanelClass{
+	width:40%;
+	margin-left:30%;
+	margin-bottom:5%;
+}
+
+/* Stilizovanje vozilo.xhtml stranice*/
+
+#panelVoziloMeni{
+	position:center;
+	width:70%;
+}
+
+.klasaToolbara .ui-panel{
+	width:60%
+}
+
+.klasaPanel .ui-panel-content ui-widget-content{
+	align-content:center;
+	width:80%;
+}
+
+#voziloPanel{
+	content-align:center;
+	width:50%
+}
+
+.ui-panel.ui-widget.panelIzvestajiVozilaClass{
+	width:550px;
+	margin-left:380px;
+	margin-bottom:5%;
+}
+
+.panelIzvestajiVozilaClass .ui-panel-titlebar{
+	height:20px;
+	text-align:center;
+	/*naknadno dodate 4 linije koda*/
+	padding: .5em 1em .3em;
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 522px;
+}
+
+
+.footer{
+   position:fixed;
+   z-index:10; /* 10 se uzima kao najvisi stack order elementa */
+   text-align:center;
+   left:0;
+   font-size:14px;
+   bottom:0;
+   width:100%;
+   background:#e0e0e0;
+   height:14px;
+}

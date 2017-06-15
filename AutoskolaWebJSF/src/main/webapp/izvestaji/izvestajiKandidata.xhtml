@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="../resources/templates/kandidatTemplate.xhtml">
+		<ui:define name="head">			
+			<title>Izveštaji kandidata</title>
+		</ui:define>
+		<ui:define name="content">
+			<h1>Generisanje izveštaja za kandidate</h1>
+			<h:form id="form">
+				<p:panel id="izvestajiKandidata" styleClass="izvestajiKandidataClass" header="Izveštaji kandidata">
+					
+					<div class="divOpisIzvestajaPolozenaVoznja">
+						<span class="spanClasss"> - Izveštaj koji generiše <b>SVE</b>
+							kandidate za odabranu kategoriju
+						</span>
+					</div>
+					<br/><br/>
+					<p:panelGrid id="panelGridKandZaKat" columns="2" styleClass="panelGridKandZaKatClass">
+						<f:facet name="header">Kandidati za kategoriju</f:facet>
+						<h:outputLabel value="Naziv kategorije" for="kategorijaMenu" />
+						<p:selectOneMenu id="kategorijaMenu" value="#{kandidatReportManagedBean.idKategorije}">
+							<f:selectItem itemLabel="Kategorija..." itemValue="" noSelectOption="true" />
+							<f:selectItems value="#{kandidatReportManagedBean.listaKategorija}" var="kat"
+								itemLabel="#{kat}" itemValue="#{kat.idKategorija}" />
+						</p:selectOneMenu>
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatiZaKategoriju')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/>
+
+					<div class="divOpisIzvestajaPolozenaVoznja">
+						<span class="spanClasss">- Izveštaj koji generiše kandidate
+							upisane za uneti datum i sortira ih po instruktoru i kategoriji</span>
+					</div>
+					<p:panelGrid id="panelGridKandidatiUpisani" styleClass="panelGridKandidatiUpisaniClass" columns="2">
+						<f:facet name="header">Kandidati upisani za datum</f:facet>
+						<h:outputLabel value="Datum od:" for="datumOdCalendar3" />
+						<p:calendar id="datumOdCalendar3" value="#{kandidatReportManagedBean.datumOd1}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Datum do:" for="datumDoCalendar3" />
+						<p:calendar id="datumDoCalendar3" value="#{kandidatReportManagedBean.datumDo1}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatiUpisaniZaDatum')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/>
+					
+					
+					<div class="divOpisIzvestajaPolozenaVoznja">
+						<span class="spanClasss">- Izveštaj koji generiše kanidate koji su prijavili testove za unetu kategoriju i prosleđene datume.</span>					
+					</div>
+					<p:panelGrid id="panelGridKandidatiPrijaviliTestove" columns="2" styleClass="panelGridKandidatiPrijaviliTestoveClass">
+						<f:facet name="header">Kandidati prijavili testove za datum</f:facet>
+						<h:outputLabel value="Kategorija" for="kategorija4" />
+						<p:inputText id="kategorija4" value="#{kandidatReportManagedBean.naziv1}" />
+						<h:outputLabel value="Datum od:" for="datumOdCalendar4" />
+						<p:calendar id="datumOdCalendar4" value="#{kandidatReportManagedBean.datumOd2}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Datum do:" for="datumDoCalendar4" />
+						<p:calendar id="datumDoCalendar4" value="#{kandidatReportManagedBean.datumDo2}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatiPrijaviliTestoveZaDatum')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/><br/>
+					
+					
+					<div class="divOpisIzvestajaPolozenaVoznja">
+						<span class="spanClasss">- Izveštaj koji generiše kanidate koji su prijavili vožnju za unetu kategoriju i prosleđene datume.</span>					
+					</div>
+					<p:panelGrid id="panelGridKandidatiPrijaviliVoznju" columns="2" styleClass="panelGridKandidatiPrijaviliTestoveClass">
+						<f:facet name="header">Kandidati prijavili vožnju za datum</f:facet>
+						<h:outputLabel value="Kategorija" for="kategorija5" />
+						<p:inputText id="kategorija5" value="#{kandidatReportManagedBean.naziv3}" />
+						<h:outputLabel value="Datum od:" for="datumOdCalendar4" />
+						<p:calendar id="datumOdCalendar5" value="#{kandidatReportManagedBean.datumOd5}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Datum do:" for="datumDoCalendar5" />
+						<p:calendar id="datumDoCalendar5" value="#{kandidatReportManagedBean.datumDo5}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatiPrijaviliVoznjuZaDatum')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/><br/>
+					
+					
+					<div class="divOpisIzvestajaPolozeniTestovi">
+					<span class="spanClasss">- Izveštaj koji generiše kanidate koji su položili testove za prosleđene datume i 
+					  soritra ih abecedno po imenu instruktora, nazivu kategorije i od najvećeg broja ka najmanjem broju osvojenih bodova.</span>
+					</div>
+					<p:panelGrid columns="2" id="panelGridKandidatiPoloziliTestove" styleClass="panelGridKandidatiPoloziliTestoveClass">
+						<f:facet name="header">Kandidati položili testove za datum</f:facet>
+						<h:outputLabel value="Datum od:" for="datumOdCalendar" />
+						<p:calendar id="datumOdCalendar" value="#{kandidatReportManagedBean.datumOd3}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Datum do:" for="datumDoCalendar" />
+						<p:calendar id="datumDoCalendar" value="#{kandidatReportManagedBean.datumDo3}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatPoloziliTestoveZaDatum')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/><br/><br/>
+					
+					<div class="divOpisIzvestajaPolozenaVoznja">
+						<span class="spanClasss">- Izveštaj koji generiše kanidate koji su položili vožnju za unetu kategoriju i prosleđene datume.</span>					
+					</div>
+					<p:panelGrid id="panelGridKandidatiPoloziliVoznju" columns="2" styleClass="panelGridKandidatiPoloziliVoznjuClass">
+						<f:facet name="header">Kandidati položili vožnju za datum</f:facet>
+						<h:outputLabel value="Kategorija" for="kategorija2" />
+						<p:inputText id="kategorija2" value="#{kandidatReportManagedBean.naziv2}" />
+						<h:outputLabel value="Datum od:" for="datumOdCalendar2" />
+						<p:calendar id="datumOdCalendar2" value="#{kandidatReportManagedBean.datumOd4}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<h:outputLabel value="Datum do:" for="datumDoCalendar2" />
+						<p:calendar id="datumDoCalendar2" value="#{kandidatReportManagedBean.datumDo4}" mask="true"
+							pattern="dd.MM.yyyy" navigator="true" yearRange="c-100:c+10" />
+						<f:facet name="footer">
+							<h:commandButton value="Generiši"
+								action="#{kandidatReportManagedBean.generateReport('kandidatiPoloziliVoznjuZaDatum')}"
+								render="form" execute="@form">
+							</h:commandButton>
+						</f:facet>
+					</p:panelGrid>
+					<br/>
+					
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>			
+</h:body>
+</html>
